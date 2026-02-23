@@ -66,7 +66,7 @@ class TaskManager:
         table.add_column("Status", justify="center")
         table.add_column("Time made", style="white")
         for i, task in enumerate(tasks, start=1):
-            status = "✅" if task.completed else "⬜"
+            status = "Done" if task.completed else "Pending"
             table.add_row(str(i), task.task, status, task.get_display_time())
         console.print(table)
     
@@ -80,7 +80,7 @@ class TaskManager:
         for i, task in enumerate(tasks, start=1):
             if i == number:
                 console.print(f"Deleted task: {task.task}")
-                tasks.pop(i)
+                tasks.pop(i-1)
                 self.save_tasks(tasks)
                 return
         console.print("Task not found")
